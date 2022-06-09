@@ -46,7 +46,7 @@ export default function App() {
           options={{
             tabBarLabel: 'Settings',
             tabBarIcon: ({ color }) => (
-              <FontAwesome name='gear' color={color} size={26} />
+              <FontAwesome name='check' color={color} size={26} />
             ),
           }}
         />
