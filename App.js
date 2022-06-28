@@ -16,8 +16,7 @@ export default function App() {
 
 const [userLoggedIn, setUserLoggedIn] = useState(false);
 
-if (userLoggedIn) {
-
+if (userLoggedIn){
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -51,22 +50,19 @@ if (userLoggedIn) {
           options={{
             tabBarLabel: 'Settings',
             tabBarIcon: ({ color }) => (
-              <FontAwesome name='check' color={color} size={26} />
+              <FontAwesome name='gear' color={color} size={26} />
             ),
           }}
         />
       </Tab.Navigator>
     </NavigationContainer>
   );
-
 } else {
-
   return(
-    <Login/>
+    <Login setUserLoggedIn={setUserLoggedIn}/>
   )
 }
 }
-
 
 const styles = StyleSheet.create({
   

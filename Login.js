@@ -1,5 +1,6 @@
 import {useState} from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity } from "react-native";
+import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 const sendText= async (phoneNumber)=>{
   console.log("PhoneNumber: ",phoneNumber);
@@ -11,7 +12,7 @@ const sendText= async (phoneNumber)=>{
   });
 }
 
-const getToken = async ({phoneNumber, oneTimePassword}) =>{
+const getToken = async ({phoneNumber, oneTimePassword, setUserLoggedIn}) =>{
   const tokenResponse = await fetch('https://dev.stedi.me/twofactorlogin',{
     method: 'POST', 
     body:JSON.stringify({phoneNumber, oneTimePassword}),
@@ -20,11 +21,15 @@ const getToken = async ({phoneNumber, oneTimePassword}) =>{
     }
   });
 
+  const responseCode = tokenResponse.status;// 200 means logged in
+  console.log("Response Status Code", responseCode);
+  if(responseCode==200){
+    setUserLoggedIn(true);
+  }
   const tokenResponseString = await tokenResponse.text();
-  console.log(tokenResponseString);
 }
 
-const Login = () => {
+const Login = (props) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [oneTimePassword, setOneTimePassword] = useState(null);
 
@@ -56,7 +61,7 @@ const Login = () => {
       <TouchableOpacity 
         style={styles.button}
         onPress={()=>{
-          getToken({phoneNumber, getToken});
+          getToken({phoneNumber, oneTimePassword, setUserLoggedIn:props.setUserLoggedIn});
         }}
       >
         <Text>Login</Text>
