@@ -40,7 +40,7 @@ const Login = (props) => {
         onChangeText={setPhoneNumber}
         value={phoneNumber}
         placeholderTextColor = '#4251f5'
-        placeholder= "801-555-1212"
+        placeholder= "jameskiribati@gmail.com"
       />
       <TouchableOpacity 
         style={styles.button}
