@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import AppName from "./AppName";
 import Setting from "./Setting";
 
-function Bar() {
+function Bar(props) {
     return(
         <View style={styles.bar}>
             <AppName />
